@@ -1,5 +1,8 @@
+#%%
 import sys
-sys.path.insert(0,'C:\\Users\\Kisan\\langgraph_fastapi\\app')
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), 'app'))
+
 from graph import agent
 import pytest
 import pytest_asyncio
@@ -10,3 +13,5 @@ async def test_graph():
     assert result is not None
 
 
+
+# %%
