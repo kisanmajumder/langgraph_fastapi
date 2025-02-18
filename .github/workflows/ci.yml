@@ -3,6 +3,8 @@ on: push
 jobs: 
   build:
     runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.11
@@ -13,7 +15,5 @@ jobs:
         run: |
           make install
       - name: Test
-        env:
-            OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           make test
