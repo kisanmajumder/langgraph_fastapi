@@ -9,7 +9,7 @@ env:
     ECR_REPOSITORY: langgraph/fastapi
     ECS_SERVICE: langgraph-api
     ECS_CLUSTER: ProductionCluster
-    ECS_TASK_DEFINITION: langgraph-api
+    ECS_TASK_DEFINITION: .github/workflows/task.json
     CONTAINER_NAME: langgraph-api
 jobs: 
   build:
