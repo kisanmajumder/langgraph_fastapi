@@ -7,6 +7,10 @@ app = FastAPI()
 
 class ChatInput(BaseModel):
     messages: str
+    
+@app.get("/")
+def health_check():
+    return {'health_check': 'OK'}
 
 @app.post("/chat")
 async def chat(input: ChatInput):
