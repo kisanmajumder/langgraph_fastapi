@@ -9,7 +9,6 @@ env:
     ECR_REPOSITORY: langgraph/fastapi
     ECS_SERVICE: langgraph-api
     ECS_CLUSTER: ProductionCluster
-    ECS_TASK_DEFINITION: task.json
     CONTAINER_NAME: langgraph-api
 jobs: 
   build:
@@ -51,11 +50,14 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+      - name: Doownlaod task definition
+        run: |
+          aws ecs describe-task-definition --task-definition langgraph-api > task-definition.json
       - name: Render Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: ${{ env.ECS_TASK_DEFINITION }}
+          task-definition: task-definition.json
           container-name: ${{ env.CONTAINER_NAME }}
           image: ${{ steps.build-image.outputs.image }}
   
