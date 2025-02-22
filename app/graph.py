@@ -9,9 +9,11 @@ from pathlib import Path
 import os
 import sys
 
-load_dotenv('C:\\Users\\Kisan\\langgraph_fastapi\\.env')
+#load_dotenv('C:\\Users\\Kisan\\langgraph_fastapi\\.env')
+ 
 chat_model = ChatOpenAI(model = 'gpt-4o',
-                                 temperature = 0)
+                                 temperature = 0,
+                                 api_key = os.getenv('OPENAI_API_KEY'))
 
 class OverallSchema(TypedDict):
     messages: Annotated[list, add_messages]

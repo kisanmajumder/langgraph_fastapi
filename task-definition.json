@@ -16,15 +16,14 @@
             ],
             "essential": true,
             "environment": [],
-            "environmentFiles": [],
-            "mountPoints": [],
-            "volumesFrom": [],
-            "secrets": [
+            "environmentFiles": [
                 {
-                    "name": "OPENAI_API_KEY",
-                    "valueFrom": "arn:aws:secretsmanager:eu-north-1:779846788680:secret:prod/openai-2rbo1b"
+                    "value": "arn:aws:s3:::envdevfiles/.env",
+                    "type": "s3"
                 }
             ],
+            "mountPoints": [],
+            "volumesFrom": [],
             "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
